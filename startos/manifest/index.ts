@@ -3,10 +3,10 @@ import { long, short } from './i18n'
 
 export const manifest = setupManifest({
   id: 'datum',
-  title: 'Datum Gateway',
+  title: 'Datum Gateway (SHA256)',
   license: 'mit',
-  packageRepo: 'https://github.com/Start9Labs/datum-gateway-startos',
-  upstreamRepo: 'https://github.com/ocean-xyz/datum-gateway',
+  packageRepo: 'https://github.com/paulscode/datum-gateway-sha256-startos',
+  upstreamRepo: 'https://github.com/paulscode/datum_gateway',
   marketingUrl: 'https://ocean.xyz',
   donationUrl: null,
   description: { short, long },

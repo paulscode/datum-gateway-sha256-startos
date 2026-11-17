@@ -1,18 +1,24 @@
 import { IMPOSSIBLE, VersionInfo } from '@start9labs/start-sdk'
 
 export const current = VersionInfo.of({
-  version: '0.5.1-beta:1',
+  version: '0.5.1-beta:10',
   releaseNotes: {
-    en_US:
-      'Requires StartOS 0.4.1 or later. Fixes memory use growing while the service runs.',
-    es_ES:
-      'Requiere StartOS 0.4.1 o posterior. Corrige el aumento del uso de memoria mientras el servicio está en ejecución.',
-    de_DE:
-      'Erfordert StartOS 0.4.1 oder neuer. Behebt einen während der Laufzeit des Dienstes ansteigenden Speicherverbrauch.',
-    pl_PL:
-      'Wymaga StartOS 0.4.1 lub nowszego. Naprawia wzrost zużycia pamięci podczas działania usługi.',
-    fr_FR:
-      "Nécessite StartOS 0.4.1 ou une version ultérieure. Corrige l'augmentation de la consommation de mémoire pendant le fonctionnement du service.",
+    en_US: `PaulsCode's build of Datum Gateway for SHA256, a drop-in replacement for the official package.
+
+- Rented rigs keep their own difficulty. With "Serve miners below the pool's minimum difficulty" (on by default), each miner gets a difficulty that suits its hashrate even when the pool's minimum is far higher. Work is still committed at the pool's minimum and only shares meeting it are sent to the pool, so pool credit is unchanged.
+- Miners can request a difficulty in the Stratum password (d=N), also on by default. Pickhash uses it to give each rented rig the difficulty MiningRigRentals expects.
+- Vardiff measures at the difficulty it actually serves, which stops large overshoots after a step up.
+- A connection that opens with a TLS handshake is closed at once, so MiningRigRentals' pool test no longer reports a working endpoint as failing.
+- Answers datum.capabilities, so tools such as Pickhash can tell what this gateway supports.
+
+Both new settings are under Actions → Stratum Server Settings.`,
+    fr_FR: `Version PaulsCode de Datum Gateway pour SHA256, remplaçant direct du paquet officiel.
+
+- Les machines louées gardent leur propre difficulté (« Servir les mineurs sous la difficulté minimale du pool », activé par défaut). Le travail reste engagé au minimum du pool et seules les parts qui l'atteignent lui sont envoyées : le crédit du pool est inchangé.
+- Les mineurs peuvent demander une difficulté dans le mot de passe Stratum (d=N), activé par défaut.
+- Le vardiff mesure à la difficulté réellement servie.
+- Une connexion qui commence par une poignée de main TLS est fermée aussitôt.
+- Répond à datum.capabilities.`,
   },
   migrations: {
     up: async () => {},

@@ -36,6 +36,10 @@ const stratumShape = z.looseObject({
   vardiff_quickdiff_delta: optNumber,
   share_stale_seconds: optNumber,
   fingerprint_miners: optBoolean,
+  // PaulsCode builds: serve each miner its own difficulty below the pool's minimum, and let a
+  // miner request a difficulty in the Stratum password (d=N). Both default on (seedFiles).
+  vardiff_below_pool_min: optBoolean,
+  password_difficulty: optBoolean,
   idle_timeout_no_subscribe: optNumber,
   idle_timeout_no_shares: optNumber,
   idle_timeout_max_last_work: optNumber,
