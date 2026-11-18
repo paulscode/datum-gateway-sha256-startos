@@ -1,24 +1,20 @@
 import { IMPOSSIBLE, VersionInfo } from '@start9labs/start-sdk'
 
 export const current = VersionInfo.of({
-  version: '0.5.1-beta:10',
+  version: '0.5.1-beta:11',
   releaseNotes: {
-    en_US: `PaulsCode's build of Datum Gateway for SHA256, a drop-in replacement for the official package.
+    en_US: `Fixes from independent reviews of the gateway changes.
 
-- Rented rigs keep their own difficulty. With "Serve miners below the pool's minimum difficulty" (on by default), each miner gets a difficulty that suits its hashrate even when the pool's minimum is far higher. Work is still committed at the pool's minimum and only shares meeting it are sent to the pool, so pool credit is unchanged.
-- Miners can request a difficulty in the Stratum password (d=N), also on by default. Pickhash uses it to give each rented rig the difficulty MiningRigRentals expects.
-- Vardiff measures at the difficulty it actually serves, which stops large overshoots after a step up.
-- A connection that opens with a TLS handshake is closed at once, so MiningRigRentals' pool test no longer reports a working endpoint as failing.
-- Answers datum.capabilities, so tools such as Pickhash can tell what this gateway supports.
+- A block found in a quickdiff share for an earlier job is now submitted before the share is refused. Before, such a share was refused first, so a block in it could be lost.
+- A second quickdiff on the same job no longer resends identical work. With the commitment held at the pool's minimum it would repeat the first one exactly, and the rig's resubmitted shares came back as duplicates. Now only the new difficulty is sent.
+- A quickdiff share for another job is answered as unknown work, rather than as a hashing error that reads like a hardware fault.
+- Fixed a misaligned memory read in the duplicate-share check.`,
+    fr_FR: `Corrections issues de revues indépendantes.
 
-Both new settings are under Actions → Stratum Server Settings.`,
-    fr_FR: `Version PaulsCode de Datum Gateway pour SHA256, remplaçant direct du paquet officiel.
-
-- Les machines louées gardent leur propre difficulté (« Servir les mineurs sous la difficulté minimale du pool », activé par défaut). Le travail reste engagé au minimum du pool et seules les parts qui l'atteignent lui sont envoyées : le crédit du pool est inchangé.
-- Les mineurs peuvent demander une difficulté dans le mot de passe Stratum (d=N), activé par défaut.
-- Le vardiff mesure à la difficulté réellement servie.
-- Une connexion qui commence par une poignée de main TLS est fermée aussitôt.
-- Répond à datum.capabilities.`,
+- Un bloc trouvé dans une part quickdiff d'une tâche précédente est maintenant soumis avant que la part ne soit refusée.
+- Un second quickdiff sur la même tâche ne renvoie plus un travail identique : seule la nouvelle difficulté est envoyée.
+- Une part quickdiff pour une autre tâche reçoit la réponse « travail inconnu » plutôt qu'une erreur de hachage.
+- Correction d'une lecture mémoire mal alignée dans la détection des parts en double.`,
   },
   migrations: {
     up: async () => {},
