@@ -124,6 +124,7 @@ const dict = {
   'Expose JSON endpoints on the Web UI interface. Most statistics do not require authentication. Disabling this leaves the dashboard and block notifications available.': 282,
 
   // common
+  'This check has not finished after a minute': 304,
   'Must be alphanumeric.': 1000,
 } as const
 

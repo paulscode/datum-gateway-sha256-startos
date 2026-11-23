@@ -124,6 +124,7 @@ export default {
     282: "Expose les points d'accès JSON sur l'interface Web UI. La plupart des statistiques ne nécessitent pas d'authentification. La désactivation laisse le tableau de bord et les notifications de blocs disponibles.",
 
     // common
+    304: "Cette vérification n'est pas terminée après une minute",
     1000: 'Doit être alphanumérique.',
   },
 } satisfies Record<string, LangDict>

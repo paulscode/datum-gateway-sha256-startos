@@ -173,6 +173,8 @@ Four checks. Two report health; two report numbers.
 
 **`stratum-interface` is the one to watch if miners cannot connect.** It is separate from the dashboard check because the two ports are independent: the dashboard can be up while the stratum listener is not.
 
+**Every check is bounded** (`startos/boundedCheck.ts`). start-sdk waits on a check's run with no limit, and a stop waits for every check before the daemon it requires, so one run that never returned (a subcontainer `exec` waiting on its mounts) would hold up Stop, updates and restarts. A run still pending after a minute is left behind: the check repeats its last result twice, then reads *This check has not finished after a minute* (`starting`, never `failure`). No second run starts while one is pending, and a run that finishes late is the next call's answer.
+
 ## Backups and Restore
 
 The `main` volume is copied wholesale — `sdk.Backups.ofVolumes('main')`. No dump step and nothing excluded.
